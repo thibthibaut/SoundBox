@@ -1,0 +1,22 @@
+function [] = doubletapdelay(delay_ms)
+
+[x, Fe, N] = wavread('blo.wav');
+
+wavplay(x, Fe);
+
+d = ceil(delay_ms*0.001*Fe);
+
+
+y(1:d) = x(1:d);
+
+for i=d+1:length(x)
+    y(i) = ( x(i)+ x(i-d))/2;
+end
+
+z(1:d) = y(1:d);
+for i=d+1:length(x)
+    z(i) = ( y(i)+ y(i-d))/2;
+end
+
+
+wavplay(z, Fe);
